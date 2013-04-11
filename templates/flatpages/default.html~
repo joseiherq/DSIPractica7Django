@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ flatpage.title }}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}styles.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap-responsive.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap-responsive.min.css">
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+	<div class="container">
+	  <nav>
+	    {% load flatpages %}
+	    {% get_flatpages '/home/' as homepages %}
+	    {% get_flatpages '/help/' as helppages %}
+	    <ul class="nav pull-right">
+	      <li><a href="{{ homepages.0.url }}">{{ homepages.0.title }}</a></li>
+	      <li><a href="{{ helppages.0.url }}">{{ helppages.0.title }}</a></li>
+	    </ul>
+	  </nav>
+	</div>
+      </div>
+    </header>
+    <div class="container">
+      {{ flatpage.content }}
+      <footer class="footer">
+	<small>
+	  <a href="http://railstutorial.org/">Rails Tutorial</a>
+	  by Michael Hartl
+	</small>
+	<nav>
+	  {% get_flatpages '/about/' as aboutpages %}
+	  {% get_flatpages '/contact/' as contactpages %}
+	  <ul>
+	    <li><a href="{{ aboutpages.0.url }}">{{ aboutpages.0.title }}</a></li>
+	    <li><a href="{{ contactpages.0.url }}">{{ contactpages.0.title }}</a></li>
+	  </ul>
+	</nav>
+      </footer>
+    </div>
+  </body>
+</html>
+
